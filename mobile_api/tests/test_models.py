@@ -1,5 +1,7 @@
 from unittest import TestCase
 
+import pytest
+
 from mobile_api.models import Task, User, Step
 from mobile_api.views import create_step_list
 
@@ -36,7 +38,7 @@ class TestTask(TestCase):
         self.assertEqual(task.num_steps, 3)
 
         task = Task(task_id='foo', launches=7, do_review=True)
-        self.assertEqual(task.num_steps, 10)
+        self.assertEqual(task.num_steps, 9)
 
         task = Task(task_id='foo', launches=5, do_review=True)
         self.assertEqual(task.num_steps, 8)
@@ -44,6 +46,7 @@ class TestTask(TestCase):
 
 class TestStep(TestCase):
 
+    @pytest.mark.django_db
     def test_ordering(self):
         task = Task.objects.create(task_id='foo', launches=2, do_review=True)
         user = User.objects.create(user_id='bar')
@@ -55,7 +58,7 @@ class TestStep(TestCase):
         actions = [step.step for step in steps]
         self.assertEqual(actions, [Step.INSTALL, Step.LAUNCH, Step.LAUNCH, Step.LAUNCH, Step.REVIEW])
 
-        task = Task.objects.create(task_id='foo', launches=5, do_review=True)
+        task = Task.objects.create(task_id='bar', launches=5, do_review=True)
         create_step_list(task, user)
         steps = Step.objects.filter(task=task, user=user)
         days = [step.day for step in steps]

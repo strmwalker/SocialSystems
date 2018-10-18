@@ -30,7 +30,7 @@ class Task(models.Model):
         steps += self.launches  # launches
         if self.do_review:
             steps += 1
-        if self.launches >= 7:
+        if self.launches < 7 and self.do_review:
             steps += 1  # free launch on 7th day to review
         return steps
 

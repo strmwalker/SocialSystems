@@ -19,11 +19,11 @@ from mobile_api.views import admin_add_task, admin_list_tasks, admin_delete_task
     user_list_tasks, user_show_task_steps, user_complete_task_step, get_task
 
 urlpatterns = {
-    path('tasks/task', get_task),
-    path('admin/add', admin_add_task),
-    path('admin/list', admin_list_tasks),
-    path('admin/delete', admin_delete_task),
-    path('user/list', user_list_tasks),
-    path('user/task', user_show_task_steps),
-    path('user/do', user_complete_task_step),
+    path('tasks/task', get_task, name='get-task'),
+    path('admin/add', admin_add_task, name='add-task'),
+    path('admin/list', admin_list_tasks, name='admin-list-tasks'),
+    path('admin/delete', admin_delete_task, name='delete_task'),
+    path('user/list', user_list_tasks, name='user-list-tasks'),
+    path('user/task', user_show_task_steps, name='user-show-steps'),
+    path('user/do', user_complete_task_step, name='user-complete-step'),
 }
