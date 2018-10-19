@@ -1,11 +1,10 @@
 # Create your views here.
 from django.db.models import Count, Q
 from django.http import JsonResponse, HttpRequest
-from django.urls import reverse
 
 from mobile_api.models import Task, User, Step
 
-# region admin interface
+
 def get_task(request: HttpRequest):
 
     task_id = request.GET.get('task_id')
