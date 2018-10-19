@@ -62,7 +62,7 @@ class Step(models.Model):
         (TODO, 'todo'),
         (DONE, 'done')
     )
-    status = models.CharField(max_length=2, choices=STEP_CHOICES, default=TODO)
+    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=TODO)
 
     class Meta:
         ordering = ['day', 'step']
